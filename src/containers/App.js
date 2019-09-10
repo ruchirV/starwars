@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { requestHomeAction } from '../actions/actions'
-import HomeCard from '../components/HomeCard'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { requestHomeAction, fetchItems } from '../actions/actions'
+import Home from "../components/Home"
+import Level1 from "../components/Level1"
 
 import './App.css';
 
 const mapStateToProps = state => ({
 		homeEntries : state.home.entries,
-		isPending : state.home.isPending
+		isPending : state.home.isPending || state.l1.isPending,
+		l1Data : state.l1.items
 	})
 
 const mapDispatchToProps = dispatch => ({
-		onHomeEntriesRequest : () => dispatch(requestHomeAction())
+		onHomeEntriesRequest : () => dispatch(requestHomeAction()),
+		fetchL1Items : (title, url) => dispatch(fetchItems(title, url))
 	})
 
 class App extends Component {
@@ -19,29 +23,31 @@ class App extends Component {
 		this.props.onHomeEntriesRequest()
 	}
 
-	onCardClick = (index) => {
-		const { homeEntries } = this.props;
-		const entries = Object.entries(homeEntries);
-		const clickedEntry = entries[index];
-		console.log("Clicked", clickedEntry[0], clickedEntry[1]);
-	}
-
 	render() {
-		const { isPending, homeEntries } = this.props;
+		const { isPending, homeEntries, l1Data } = this.props;
 
-		return isPending ? (<div> Loading </div>) : 
-			(<div id="container"> 
-				<div id="title">The Star Wars World</div>
-				<div id="cardContainer">
-					{Object.entries(homeEntries).map((entry,index) => {
-						return (<HomeCard 
-									key={index} 
-									title={entry[0].toUpperCase()}
-									onCardClick={() => this.onCardClick(index)} 
-								/>)
-					})}
+		console.log(this.props);
+
+		return (
+			<Router>
+				<div id="container"> 
+
+					<div id="title">The Star Wars World</div>
+
+					{isPending ? (<h1>Loading..</h1>) : 
+						(
+							<div>
+								<Route exact={true} path="/" render={() => <Home homeEntries={homeEntries} 
+										fetchL1Items={this.props.fetchL1Items}/> } />
+
+							 	<Route path="/l1/:title" render={({match}) => {
+									return (<Level1 l1Data={l1Data} 
+											title={match.params.title}/>) }} />
+							</div>
+						)
+					}
 				</div>
-			</div>
+			</Router>
 		);
 	}
 }
