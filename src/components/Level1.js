@@ -8,28 +8,41 @@ class Level1 extends Component {
 
 		const { title, l1Data } = this.props;
 		const items = l1Data[title]['data']['results'];
-		//const items = [];
 
 		return (
-			<div class="l1">
-				<div className="l1-container">
-					<span className="l1-title">
-						{title}
-					</span>
+				<div class="wrapper">
+				    <div class="header">
+				      <div class="inner">
+				      	<div className="mainTitle">{title}</div>
+				      	<hr />
+				      </div>
+				    </div>
 
-					<ul className="l1-list">
-						{
-							items.map((item) => {
-								return (
-									<li>
-										{item.name};
-									</li>
-								)
-							})
-						}
-					</ul>
-				</div>
-			</div>
+				    <div class="content">
+				      <div class="inner">
+				        <div class="scrollable">
+				          <div>
+				          	{items.map((item) => {
+				          		return  (
+			          			<div className="item-title grow">
+				          			{item.name ? item.name : (item.title ? item.title : "")}
+			          			</div>);
+				          	})}
+				          </div>
+				        </div>
+				      </div>
+				    </div>
+
+				    <div class="footer">
+				      <div class="inner">
+				          <div className="nav-wrapper"> 
+					          <div className="nextprev grow"> prev </div>
+						      <div className="nextprev grow"> next </div>
+				          </div>
+				      </div>
+				    </div>
+
+				  </div>
 		)
 	}
 

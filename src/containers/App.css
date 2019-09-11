@@ -10,14 +10,31 @@
 	color: rgba(250,250,250,1);
 	background-color: rgba(100,100,100,0.8);
 	text-align: center;
-	margin: 0;
+	margin: 0 0 10px 0;
 	width: 100%;
-	padding: 10px;
+}
+
+.loading {
+	margin: auto;
+	width: 100%;
+	font-size: 3em;
+	text-align: center;
+}
+
+.container {
+	position: absolute;
+	top: 5em;
+	bottom: 20px;
+	left: 0px;
+	right: 0px;
 }
 
 @media only screen and (min-width: 400px) {
 	#title {
 		font-size: 2em;
+	}
+	.container {
+		top: 3em;
 	}
 }
 
@@ -25,17 +42,18 @@
   #title {
     font-size: 3em;
   }
+  .container {
+		top: 4em;
+	}
 }
 
 @media only screen and (min-width: 1250px) {
   #title {
     font-size: 4em;
   }
-}
-
-#container {
-	margin: 0px;
-	padding: 0px;
+  .container {
+		top: 5em;
+	}
 }
 
 #cardContainer {

@@ -26,27 +26,23 @@ class App extends Component {
 	render() {
 		const { isPending, homeEntries, l1Data } = this.props;
 
-		console.log(this.props);
-
 		return (
 			<Router>
-				<div id="container"> 
+				<header id="title">The Star Wars World</header>
+				{(isPending) ? (
+					<div className="loading">
+						Loading..
+					</div>
+					) : (
+					<div className="container">
+						<Route exact={true} path="/" render={() => <Home homeEntries={homeEntries} 
+								fetchL1Items={this.props.fetchL1Items}/> } />
 
-					<div id="title">The Star Wars World</div>
-
-					{isPending ? (<h1>Loading..</h1>) : 
-						(
-							<div>
-								<Route exact={true} path="/" render={() => <Home homeEntries={homeEntries} 
-										fetchL1Items={this.props.fetchL1Items}/> } />
-
-							 	<Route path="/l1/:title" render={({match}) => {
-									return (<Level1 l1Data={l1Data} 
-											title={match.params.title}/>) }} />
-							</div>
-						)
-					}
-				</div>
+					 	<Route path="/l1/:title" render={({match}) => {
+							return (<Level1 l1Data={l1Data} 
+									title={match.params.title}/>) }} />
+					</div>)
+				}
 			</Router>
 		);
 	}
