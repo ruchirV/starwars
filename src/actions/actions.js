@@ -19,7 +19,9 @@ export const requestHomeAction = () => (dispatch) => {
 export const fetchItems = (title,url) => (dispatch) => {
 	dispatch({type : FETCH_ITEMS_PENDING});
 
-	url = url + '?format=json'
+	if(url.indexOf("format=json") === -1) {
+		url = url + '?format=json'
+	}
 
 	fetch(url)
 		.then(response => response.json())

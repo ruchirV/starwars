@@ -4,10 +4,25 @@ import "./Level1Styles.css"
 
 class Level1 extends Component {
 
+	handlePrevClick = () => {
+		const { title, l1Data } = this.props;
+		const prevLink = l1Data[title]['data']['previous']
+		this.props.fetchL1Items(title,prevLink)
+	}
+
+	handleNextClick = () => {
+		const { title, l1Data } = this.props;
+		const nextLink = l1Data[title]['data']['next']
+		this.props.fetchL1Items(title,nextLink)
+	}
+
 	render () {
 
 		const { title, l1Data } = this.props;
 		const items = l1Data[title]['data']['results'];
+
+		const nextLink = l1Data[title]['data']['next']
+		const prevLink = l1Data[title]['data']['previous']
 
 		return (
 				<div class="wrapper">
@@ -36,8 +51,8 @@ class Level1 extends Component {
 				    <div class="footer">
 				      <div class="inner">
 				          <div className="nav-wrapper"> 
-					          <div className="nextprev grow"> prev </div>
-						      <div className="nextprev grow"> next </div>
+					          {(prevLink !== null) && <div className="nextprev grow" onClick={this.handlePrevClick}> prev </div>}
+						      {(nextLink !== null) && <div className="nextprev grow" onClick={this.handleNextClick}> next </div>}
 				          </div>
 				      </div>
 				    </div>

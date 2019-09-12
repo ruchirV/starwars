@@ -40,7 +40,9 @@ class App extends Component {
 
 					 	<Route path="/l1/:title" render={({match}) => {
 							return (<Level1 l1Data={l1Data} 
-									title={match.params.title}/>) }} />
+									title={match.params.title} 
+									fetchL1Items={this.props.fetchL1Items}
+									/>) }} />
 					</div>)
 				}
 			</Router>
