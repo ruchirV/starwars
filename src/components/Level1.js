@@ -51,8 +51,8 @@ class Level1 extends Component {
 				    <div class="footer">
 				      <div class="inner">
 				          <div className="nav-wrapper"> 
-					          {(prevLink !== null) && <div className="nextprev grow" onClick={this.handlePrevClick}> prev </div>}
-						      {(nextLink !== null) && <div className="nextprev grow" onClick={this.handleNextClick}> next </div>}
+					          <div className="nextprev grow" onClick={this.handlePrevClick}>{(prevLink !== null) ? "prev" : "" }</div>
+						      <div className="grow nextprev" onClick={this.handleNextClick}>{(nextLink !== null) ? "next" : "" }</div>
 				          </div>
 				      </div>
 				    </div>
