@@ -5,7 +5,7 @@ sample project for showcasing React-Redux-HTML-CSS
 ### Home Page
 ![](./images/starwars_01.png)
 
-### People Page
+### Other Pages
 ![](./images/starwars_02.png)
 
 
