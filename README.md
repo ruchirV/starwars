@@ -1,10 +1,10 @@
 # starwars
 sample project for showcasing React-Redux-HTML-CSS
 
-#Home Page
+# Home Page
 ![](./images/starwars_01.png)
 
-#People Page
+# People Page
 ![](./images/starwars_02.png)
 
 
